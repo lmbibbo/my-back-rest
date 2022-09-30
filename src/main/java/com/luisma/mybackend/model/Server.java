@@ -1,10 +1,10 @@
 package com.luisma.mybackend.model;
 
+import com.luisma.mybackend.enumeration.Status;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.luisma.mybackend.enumeration.Status;;
 
 @Document
 public class Server {
