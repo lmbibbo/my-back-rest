@@ -4,11 +4,13 @@ import com.luisma.mybackend.model.Server;
 import com.luisma.mybackend.repository.ServerRepository;
 import com.luisma.mybackend.service.ServerService;
 import java.util.Collection;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
+@Slf4j
 public class ServerServiceImpl implements ServerService{
 
     private final ServerRepository serverRepository;
@@ -19,6 +21,7 @@ public class ServerServiceImpl implements ServerService{
 
     @Override
     public Server create(Server server) {
+        log.info("Serving Server: {}", server.getName());
         // TODO Auto-generated method stub
         return null;
     }
