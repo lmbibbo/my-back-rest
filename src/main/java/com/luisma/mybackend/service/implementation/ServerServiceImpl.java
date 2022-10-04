@@ -4,15 +4,10 @@ import com.luisma.mybackend.enumeration.Status;
 import com.luisma.mybackend.model.Server;
 import com.luisma.mybackend.repository.ServerRepository;
 import com.luisma.mybackend.service.ServerService;
-
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Collection;
 import java.util.Random;
-
-import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,11 +15,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Service
 @Transactional
-@Slf4j
 public class ServerServiceImpl implements ServerService{
 
     private final ServerRepository serverRepository;
-    
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ServerServiceImpl.class); 
+
     public ServerServiceImpl(ServerRepository serverRepository) {
         this.serverRepository = serverRepository;
     }
