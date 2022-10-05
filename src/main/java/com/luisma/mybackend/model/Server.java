@@ -1,35 +1,35 @@
 package com.luisma.mybackend.model;
 
 import com.luisma.mybackend.enumeration.Status;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.validation.constraints.NotEmpty;
+
+import static javax.persistence.GenerationType.AUTO;
 
 
-@Document
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Server {
-
     @Id
+    @GeneratedValue(strategy = AUTO)
+    @Column(name = "id", nullable = false)
     private Long id;
-    @Indexed(unique = true)
+
+    @Column(unique = true)
+    @NotEmpty(message = "IP Address cannot be empty o null")
     private String ipAddress;
     private String name;
     private String memory;
     private String type;
     private String imageUrl;
     private Status status;
-    
-    public Server(String ipAddress, String name, String memory, String type, String imageUrl, Status status) {
-        this.ipAddress = ipAddress;
-        this.name = name;
-        this.memory = memory;
-        this.type = type;
-        this.imageUrl = imageUrl;
-        this.status = status;
-    }
-
-    public Server() {
-    }
 
     public Long getId() {
         return id;
@@ -39,51 +39,4 @@ public class Server {
         this.id = id;
     }
 
-    public String getIpAddress() {
-        return ipAddress;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMemory() {
-        return memory;
-    }
-
-    public void setMemory(String memory) {
-        this.memory = memory;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
 }
