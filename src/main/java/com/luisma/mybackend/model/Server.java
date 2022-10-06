@@ -21,7 +21,6 @@ public class Server {
     @GeneratedValue(strategy = AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
-
     @Column(unique = true)
     @NotEmpty(message = "IP Address cannot be empty o null")
     private String ipAddress;
@@ -30,13 +29,5 @@ public class Server {
     private String type;
     private String imageUrl;
     private Status status;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 }

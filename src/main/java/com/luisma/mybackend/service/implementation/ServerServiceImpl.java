@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import static java.lang.Boolean.TRUE;
+
 @Service
 @Transactional
 public class ServerServiceImpl implements ServerService{
@@ -34,7 +36,8 @@ public class ServerServiceImpl implements ServerService{
 
     private String setServerImageUrl() {
         String [] imageNames = { "server1.png", "server2.png", "server3.png", "server4.png"};
-        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/server/image/" + imageNames[new Random().nextInt(4)]).toString();
+
+        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/server/image/" + imageNames[new Random().nextInt(4)]).toUriString();
     }
 
     @Override
@@ -59,13 +62,13 @@ public class ServerServiceImpl implements ServerService{
     public Boolean delete(Long id) {
         log.info("Deleting Server by Id: {}", id);
         serverRepository.deleteById(id);
-        return true;
+        return TRUE;
     }
 
     @Override
     public Server ping(String ipAddress) throws IOException {
         log.info("Pingin Server IP: {}", ipAddress);  
-        Server server= serverRepository.findByIpAddress(ipAddress);
+        Server server=serverRepository.findByIpAddress(ipAddress);
         InetAddress address= InetAddress.getByName(ipAddress);
         server.setStatus(address.isReachable(10000)? Status.SERVER_UP: Status.SERVER_DOWN);
         serverRepository.save(server);
